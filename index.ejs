@@ -1,0 +1,44 @@
+<head>
+    <link href="/style.css" rel="stylesheet" type="text/css">
+</head>
+<script src="html5-qrcode.min.js"></script>
+<style>
+  .result{
+    background-color: green;
+    color:#fff;
+    padding:20px;
+  }
+  .row{
+    display:flex;
+  }
+</style>
+
+
+<div class="row">
+  <div class="col">
+    <div style="width:500px;" id="reader"></div>
+  </div>
+</div>
+<h4>SCANNED RESULT</h4>
+<form action="http://localhost:5001/scanned" method="post">
+    <input id = "t" TYPE="text" NAME="inputbox" VALUE="">
+    <br><br>
+    <input type ="submit" type = "Check in!"> </input>
+</form>
+
+
+
+<script type="text/javascript">
+function onScanSuccess(qrCodeMessage) {
+    document.getElementById('t').value = qrCodeMessage;
+}
+
+function onScanError(errorMessage) {
+  //handle scan error
+}
+
+var html5QrcodeScanner = new Html5QrcodeScanner(
+    "reader", { fps: 10, qrbox: 250 });
+html5QrcodeScanner.render(onScanSuccess, onScanError);
+
+</script>
