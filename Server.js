@@ -40,6 +40,7 @@ app.post("/scanned", async (request, response) => {
         guests: entry.guests, 
         venmo: entry.venmo
         };
+    await client.close();
     response.render("../views/scanned.ejs", variables);
 })
 
