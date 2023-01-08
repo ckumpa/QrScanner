@@ -26,7 +26,7 @@ app.get("/", (request, response) => {
     response.render(__dirname + '/index.ejs');
 });
 
-app.post("/scanned", async (request, response) => {
+app.post("./views/scanned", async (request, response) => {
     const result = request.body.inputbox;
     const entry = await lookUpOneEntry(client, databaseAndCollection, result);
     const variables = 
