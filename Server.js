@@ -29,6 +29,7 @@ app.get("/", (request, response) => {
 app.post("/scanned", async (request, response) => {
     const result = request.body.inputbox;
     const entry = await lookUpOneEntry(client, databaseAndCollection, result);
+    process.stdout.write(entry);
     const variables = 
         {firstname: entry.firstname, 
         lastname: entry.lastname, 
@@ -50,6 +51,7 @@ async function lookUpOneEntry(client, databaseAndCollection, email) {
     const result = await client.db(databaseAndCollection.db)
                         .collection(databaseAndCollection.collection)
                         .findOne(filter);
+    
     if (result) {
         console.log(result);
         return result;
