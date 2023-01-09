@@ -36,7 +36,7 @@
 
 <script type="text/javascript">
 function onScanSuccess(qrCodeMessage) {
-    document.getElementById('t').value = qrCodeMessage;
+    document.getElementById('t').innerHTML = qrCodeMessage;
 }
 
 function onScanError(errorMessage) {
