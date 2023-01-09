@@ -26,6 +26,13 @@
     <br><br>
     <input type ="submit" type = "Check in!"> </input>
 </form>
+<table border = "1">
+  <tr><th>First Name:</th> <td><%-firstname%></td></tr>
+  <tr><th>Last Name:</th> <td><%-lastname%></td></tr>
+  <tr><th>Dietary Restrictions: </th><td><%-dietaryrestrictions%></td></tr>
+  <tr><th>Phone number: </th><td><%-phonenumber%></td></tr>
+  <tr><th>Number Tickets: </th><td><%-numbertickets%></td></tr>
+</table>
 
 
 
@@ -39,7 +46,7 @@ function onScanError(errorMessage) {
 }
 
 var html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", { fps: 10, qrbox: 250, rememberLastUsedCamera: true });
+    "reader", { fps: 10, qrbox: 250 });
 html5QrcodeScanner.render(onScanSuccess, onScanError);
 
 </script>

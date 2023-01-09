@@ -6,7 +6,7 @@ const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, '.env') })
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
-app.set('views', __dirname + '/views');
+app.set('views', __dirname);
 
 portNumber = 5001
 const userName = process.env.MONGO_DB_USERNAME;
@@ -23,7 +23,14 @@ async function main() {
 main().catch(console.error);
 
 app.get("/", (request, response) => {
-    response.render(__dirname + '/index.ejs');
+    response.render(__dirname + '/index.ejs', {firstname: "", 
+        lastname: "", 
+        email: "",
+        dietaryrestrictions: "", 
+        phonenumber: "", 
+        numbertickets: "",
+        guests:"", 
+        venmo: ""});
 });
 
 app.post("/scanned", async (request, response) => {
@@ -39,12 +46,12 @@ app.post("/scanned", async (request, response) => {
         guests: entry.guests, 
         venmo: entry.venmo
         };
-    await client.close();
-    response.render("../views/scanned.ejs", variables);
+    response.render("./index.ejs", variables);
 })
 
 
 app.listen(portNumber);
+process.stdout.write(`Webserver started and running at http://localhost:${portNumber}\n`);
 async function lookUpOneEntry(client, databaseAndCollection, email) {
     let filter = {email: email};
     const result = await client.db(databaseAndCollection.db)
