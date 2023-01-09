@@ -29,7 +29,6 @@ app.get("/", (request, response) => {
 app.post("/scanned", async (request, response) => {
     const result = request.body.inputbox;
     const entry = await lookUpOneEntry(client, databaseAndCollection, result);
-    process.stdout.write(entry);
     const variables = 
         {firstname: entry.firstname, 
         lastname: entry.lastname, 
@@ -46,7 +45,6 @@ app.post("/scanned", async (request, response) => {
 
 
 app.listen(portNumber);
-process.stdout.write(`Webserver started and running at http://localhost:${portNumber}\n`);
 async function lookUpOneEntry(client, databaseAndCollection, email) {
     let filter = {email: email};
     const result = await client.db(databaseAndCollection.db)
