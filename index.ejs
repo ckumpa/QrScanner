@@ -2,6 +2,7 @@
     <link href="/style.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <script src="html5-qrcode.min.js"></script>
 <style>
   .result{
@@ -41,6 +42,7 @@
 <script type="text/javascript">
 function onScanSuccess(qrCodeMessage) {
     document.getElementById('t').value = qrCodeMessage;
+    html5QrcodeScanner.clear();
 }
 
 function onScanError(errorMessage) {
